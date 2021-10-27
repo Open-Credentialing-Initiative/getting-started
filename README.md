@@ -2,7 +2,7 @@
 
 The Drug Supply Chain Security Act mandates the development of an interoperable electronic system to secure the safety of prescription drugs distributed throughout the United States. One such requirement for this system is to confirm that trading partners only engage in transactions with other “authorized” trading partners. This presents a major challenge between ATPs, particularly when no prior direct business relationship exists. To address this challenge, the OCI ecosystem developed an architecture to check the ATP status between trading partners involved in automated verification for saleable returns.
 
-OCI establishes technical governance, specifications, and guidelines to support industry-wide adoption of credentialing on common ground. By utilizing W3C-specified [Decentralized Identifiers](https://www.w3.org/TR/did-core/)(DIDs) and [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/) (VCs), GS1 and open standards, OCI-maintained architecture achieves compliant and secure interactions between Authorized Trading Partners. 
+OCI establishes technical governance, specifications, and guidelines to support industry-wide adoption of credentialing on common ground. By utilizing W3C-specified [Decentralized Identifiers](https://www.w3.org/TR/did-core/) (DIDs) and [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/) (VCs), GS1 and open standards, OCI-maintained architecture achieves compliant and secure interactions between Authorized Trading Partners. 
 
 OCI is open to DSCSA trading partners, solution providers, associations, and others who aim to leverage OCI architecture and specifications to support the safety, security, and efficiency of the supply chain.
 
@@ -78,7 +78,7 @@ Additional API integration will be implemented between the enterprise wallets an
 
 - OCI Website: oc-i.org
 - OCI Conformance Criteria 
-  - Credential Issuer (will be published soon on oc-i.org)
+  - [Credential Issuers](https://open-credentialing-initiative.github.io/Credential-Issuer-Conformance-Criteria/) 
   - Digital Wallet provider (will be published soon on oc-i.org)
 - Documentation of Spherity´s reference implementation: learn.spherity.com
 - W3C standards: 
