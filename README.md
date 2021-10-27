@@ -1,3 +1,5 @@
+> You can find a web-version of this README here: https://open-credentialing-initiative.github.io/getting-started
+
 # Overview
 
 The Drug Supply Chain Security Act mandates the development of an interoperable electronic system to secure the safety of prescription drugs distributed throughout the United States. One such requirement for this system is to confirm that trading partners only engage in transactions with other “authorized” trading partners. This presents a major challenge between ATPs, particularly when no prior direct business relationship exists. To address this challenge, the OCI ecosystem developed an architecture to check the ATP status between trading partners involved in automated verification for saleable returns.
