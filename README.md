@@ -15,11 +15,11 @@ OCI is open to DSCSA trading partners, solution providers, associations, and oth
 Per the DSCSA as of November 2019, wholesale distributors are required to verify the product-level serial number on saleable returns before selling the product back into the supply chain. The manufacturer must make the serial numbers available for verification. It is estimated that 2 to 4% of pharmaceutical products sold in the US are returned to the wholesale distributors and are eligible to be sold back into the supply chain upon verification.
 
 
-Due to this high volume, an industry-wide PI verification system was implemented to allow wholesale distributors to perform the verification. The existing PI verification system allows the exchange of messages between WHOs and MANs via various VRS service providers as the primary method for the verification of so-called *serialized GTINs* (sGTIN) automatically, with a sub-second messaging roundtrip requirement. The sGTIN is encoded in a GS1 2D DataMatrix and encodes the following data objects: GTIN, Expiration Date, Batch Number, and Serial Number (S/N). Response times in the actual system are up to 2 seconds.
+Due to this high volume, an industry-wide PI verification system was implemented to allow wholesale distributors to perform the verification. The existing PI verification system allows the exchange of messages between WHOs and MANs via various VRS service providers as the primary method for the verification of so-called **serialized GTINs** (sGTIN) automatically, with a sub-second messaging roundtrip requirement. The sGTIN is encoded in a GS1 2D DataMatrix and encodes the following data objects: GTIN, Expiration Date, Batch Number, and Serial Number (S/N). Response times in the actual system are up to 2 seconds.
 
-VRS services are cloud-based, multi-tenant solutions that are integrated with the systems of wholesale distributors and manufacturers. To allow a seamless exchange of PI verification messages among WHOs, MANs, and VRS providers, the industry adopted the *GS1 Lightweight Messaging Standard* as a communication protocol among these systems.
+VRS services are cloud-based, multi-tenant solutions that are integrated with the systems of wholesale distributors and manufacturers. To allow a seamless exchange of PI verification messages among WHOs, MANs, and VRS providers, the industry adopted the **GS1 Lightweight Messaging Standard** as a communication protocol among these systems.
 
-When a saleable return arrives at the warehouse of a wholesale distributor, the 2D DataMatrix of each individual package needs to be scanned. After scanning a 2D DataMatrix in the warehouse system of the WHO, the WHO initiates a *PI verification request* (VR). This PI verification is sent to the WHO VRS service provider, which then determines a routing path by looking up a service endpoint URL and forwarding the PI request using a *Look-up Table and Routing Service Network* (e.g.  MediLedger) to the VRS of the MAN service provider. The MAN VRS queries PI data from the MAN system and then sends a PI verification request response (VR/R) back to the wholesale distributor.
+When a saleable return arrives at the warehouse of a wholesale distributor, the 2D DataMatrix of each individual package needs to be scanned. After scanning a 2D DataMatrix in the warehouse system of the WHO, the WHO initiates a **PI verification request** (VR). This PI verification is sent to the WHO VRS service provider, which then determines a routing path by looking up a service endpoint URL and forwarding the PI request using a **Look-up Table and Routing Service Network** (e.g.  MediLedger) to the VRS of the MAN service provider. The MAN VRS queries PI data from the MAN system and then sends a PI verification request response (VR/R) back to the wholesale distributor.
 The Look-up Table and Routing Service Network stores and maintains look-up data for mapping any sGTIN to the service endpoint of the relevant MANs.
 
 
@@ -47,7 +47,7 @@ These components are described in more detail in the following sections.
 
 # System Overview
 
-The OCI architecture integrates the three *new components* (DID, VC, and Digital Wallet) with components of the existing PI verification infrastructure.
+The OCI architecture integrates the three **new components** (DID, VC, and Digital Wallet) with components of the existing PI verification infrastructure.
 
 Integration of these components requires the implementation of the following artefacts:
 
