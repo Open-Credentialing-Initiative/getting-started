@@ -1,80 +1,85 @@
 > You can find a web-version of this README here: https://open-credentialing-initiative.github.io/getting-started
 
-# Overview
+# History and Purpose of the Open Credentialing Initiative (OCI)
+The OCI was formed by a group of industry service providers, manufacturers, wholesalers, and dispensers working together to design and deliver an electronic solution for the pharmaceutical industry to achieve compliance with FDA mandates for supply chain security. Upon successful demonstration of the technical solution, and acceptance by the participating manufacturers and wholesalers, the participants formed the OCI to further develop the solution into a set of tools that could be adopted and implemented across the industry.<p>
+The name OCI was chosen for the following reasons:
+- **Open** – Non-proprietary and interoperable. OCI is open to all providers, users, and standards organizations that support adoption of the integrated W3C standards and applicable NIST identity proofing standards.
+- **Credentialing** – A means of providing a credential that attests to the identity and status of its owner/holder (similar to a license or identity card you carry in your digital wallet). 
+- **Initiative** – Indicates that the work is ongoing.
 
-The Drug Supply Chain Security Act mandates the development of an interoperable electronic system to secure the safety of prescription drugs distributed throughout the United States. One such requirement for this system is to confirm that trading partners only engage in transactions with other “authorized” trading partners. This presents a major challenge between ATPs, particularly when no prior direct business relationship exists. To address this challenge, the OCI ecosystem developed an architecture to check the ATP status between trading partners involved in automated verification for saleable returns.
-
-OCI establishes technical governance, specifications, and guidelines to support industry-wide adoption of credentialing on common ground. By utilizing W3C-specified [Decentralized Identifiers](https://www.w3.org/TR/did-core/) (DIDs) and [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/) (VCs), GS1 and open standards, OCI-maintained architecture achieves compliant and secure interactions between Authorized Trading Partners. 
-
-OCI is open to DSCSA trading partners, solution providers, associations, and others who aim to leverage OCI architecture and specifications to support the safety, security, and efficiency of the supply chain.
-
-# Use Case: PI Verification
-
+OCI aims to enable  pharmaceutical industry compliance with US Drug Supply Chain Security Act (DSCSA) requirements for Authorized Trading Partners (ATP). Beyond supporting the adoption and standardization of the ATP architecture, OCI establishes a structure for running further credential-based pilots and incubation projects. For additional information, please refer to the [Open Credentialing Initiative website](https://www.oc-i.org/).
+## Regulatory Compliance – Federal Mandates
+The DSCSA has the objective of securing pharmaceutical drug distribution, from manufacturers all the way to patients. For patient safety, it is essential to know that only trusted and authorized entities are involved in the manufacture, distribution, and dispensing of prescription drugs. In addition to verification, product tracing, and serialization requirements, each supply chain actor must ensure that their Trading Partners are authorized (including indirect Trading Partners).<p>
+**DSCSA** requires that Trading Partners of manufacturers, wholesale distributors, dispensers, and repackagers meet the applicable requirements for being “authorized trading partners” (see sections 582(b)(3), (c )(3), (d)(3), and (e)(3) of the FD&C Act (21 U.S.C. 360eee-1); where “authorized” means registration in accordance with section 510 (manufacturers and repackagers), or having a valid license under State law (wholesalers and dispensers).
+## Digital Ecosystems - Identity of Transacting Entities
+Verifying that a company is “authorized” is enough to meet the letter of the law. However, in digital ecosystems it is also necessary to establish the identity of the company. Thus, it becomes a two part process – is the counterparty who they say they are, and if so, are they “authorized”? To add to this challenge, DSCSA transactions for Product Identifier (PI) Verification and Transaction Information (TI) Tracing move through any number of intermediaries (solution providers, routing systems, etc.), all of whom fall under the Statute. In a digital ecosystem good design is to limit the opportunity for information leaks, transaction replays, and tampering with the transaction or credential content throughout the ecosystem.  
+# Use Case: PI Verification in Saleable Returns
 ## Background
+Per DSCSA as of November 2019, wholesale distributors are required to verify the product-level serial number on saleable returns before selling the product back into the supply chain. The manufacturer must make the serial numbers available for verification. It is estimated that 2 to 4% of pharmaceutical products sold in the US are returned to the wholesale distributors and are eligible to be sold back into the supply chain upon verification.<p>
+Due to this high volume, an industry-wide PI verification system was implemented to allow wholesalers to perform the verification. The existing PI verification system allows the exchange of messages between Wholesalers and Manufacturers via various Verification Router Service (VRS) providers as the primary method for automatic verification of so-called **serialized Global Trade Item Numbers** (sGTIN). This message exchange is to be completed in less than one second. The sGTIN is embedded in a GS1 2D DataMatrix and encodes the following data objects: GTIN, Expiration Date, Batch Number, and Serial Number (S/N). Response times in real-world  systems are up to 2 seconds.<p>
+VRS are cloud-based, multi-tenant solutions that are integrated with the systems of wholesale distributors (WHO) and manufacturers (MAN). To allow a seamless exchange of PI verification messages between WHO, MAN, and VRS providers, the industry adopted the **GS1 Lightweight Messaging Standard** as a communication protocol.<p>
+When a saleable return arrives at the warehouse of a wholesaler, the 2D DataMatrix of each individual package needs to be scanned. After scanning, the Wholesaler sends a **PI verification request** (VR) to their VRS provider. The VRS then determines a routing path by looking up a service endpoint URL and forwarding the PI request using a **Look-up Table and Routing Service Network** (e.g.  MediLedger) to the Manufacturer’s VRS provider. The Manufacturer VRS queries PI data within the Manufacturer system and then sends a PI verification request response (VR/R) back to the wholesale distributor.<p>
+The Look-up Table and Routing Service Network store and maintain look-up data for mapping any sGTIN to the service endpoint of the relevant MANs.
 
-Per the DSCSA as of November 2019, wholesale distributors are required to verify the product-level serial number on saleable returns before selling the product back into the supply chain. The manufacturer must make the serial numbers available for verification. It is estimated that 2 to 4% of pharmaceutical products sold in the US are returned to the wholesale distributors and are eligible to be sold back into the supply chain upon verification.
+![vrs architecture overview](./assets/VRS-architecture.png)
 
-
-Due to this high volume, an industry-wide PI verification system was implemented to allow wholesale distributors to perform the verification. The existing PI verification system allows the exchange of messages between WHOs and MANs via various VRS service providers as the primary method for the verification of so-called **serialized GTINs** (sGTIN) automatically, with a sub-second messaging roundtrip requirement. The sGTIN is encoded in a GS1 2D DataMatrix and encodes the following data objects: GTIN, Expiration Date, Batch Number, and Serial Number (S/N). Response times in the actual system are up to 2 seconds.
-
-VRS services are cloud-based, multi-tenant solutions that are integrated with the systems of wholesale distributors and manufacturers. To allow a seamless exchange of PI verification messages among WHOs, MANs, and VRS providers, the industry adopted the **GS1 Lightweight Messaging Standard** as a communication protocol among these systems.
-
-When a saleable return arrives at the warehouse of a wholesale distributor, the 2D DataMatrix of each individual package needs to be scanned. After scanning a 2D DataMatrix in the warehouse system of the WHO, the WHO initiates a **PI verification request** (VR). This PI verification is sent to the WHO VRS service provider, which then determines a routing path by looking up a service endpoint URL and forwarding the PI request using a **Look-up Table and Routing Service Network** (e.g.  MediLedger) to the VRS of the MAN service provider. The MAN VRS queries PI data from the MAN system and then sends a PI verification request response (VR/R) back to the wholesale distributor.
-The Look-up Table and Routing Service Network stores and maintains look-up data for mapping any sGTIN to the service endpoint of the relevant MANs.
-
-
-## Compliance requirements
-
-​​The existing PI Verification solutions do not fulfill all DSCSA requirements. The OCI recognizes that:
-
-- The DSCSA requires manufacturers, repackagers, wholesale distributors and dispensers to only trade with companies that meet the DSCSA defined “Trading Partner” and “Authorized” definition.
-- Compliance with the DSCSA will require supply chain companies to digitally interact with supply chain companies where the company identity and whether they meet the DSCSA defined “Trading Partner” and “Authorized” definition will be unknown at the time of interaction.
-- To complete the interaction, it is essential for companies at both ends of a DSCSA digital interaction to know the identity of the other company and if the other company meets the DSCSA defined “Trading Partner” and “Authorized” definition.
-
-The OCI uses W3C (World Wide Web Consortium) decentralized Identifiers (DIDs) and verifiable credentials (VCs) specification in conjunction with the GS1 Lightweight Messaging Standard to:
-
+## Challenges of the current VRS architecture 
+In the current system the Global Location Number (GLN) is used to identify trading partners. However, it is not unheard of that a used GLN is either not or incorrectly registered for a trading entity. Additionally, there is no verifiable proof that the provided GLN actually stems from the requesting or responding trading partner.<p>
+Hence, existing PI Verification solutions do not fulfill all DSCSA requirements. <p>
+The OCI recognizes that:
+- The DSCSA requires manufacturers, repackagers, wholesale distributors and dispensers to only trade with companies that meet the DSCSA-defined “Trading Partner” and “Authorized” criteria.
+- Compliance with the DSCSA will require supply chain companies to interact digitally with other supply chain companies whose identity and authorized status are unknown at the time of interaction; i.e. a company does not know the counterparty and whether they meet the DSCSA definitions qualifying them as “Authorized Trading Partner” (ATP).
+- To complete the interaction, it is essential for companies at both ends of a DSCSA-compliant digital interaction to know each others’ identities and whether the counterparty meets the DSCSA-defined “Trading Partner” and “Authorized” criteria.
+## OCI complements existing VRS architecture for PI Verification
+The OCI uses W3C (World Wide Web Consortium) [Decentralized Identifier](https://www.w3.org/TR/did-core/) (DID) and [Verifiable Credential](https://www.w3.org/TR/vc-data-model/) (VC) specifications in conjunction with the  [GS1 Lightweight Messaging Standard for Verification of Product Identifiers](https://www.gs1.org/docs/standards/gs1_lightweight_verification_messaging_standard_v_1_0_2.pdf) in order to:
 - Know the identity of PI Verification requesters and responders,
 - Verify that the requestor or responder meets the DSCSA definition of “Trading Partner” and “Authorized”.
-  
-To fulfill the DSCSA requirements, the OCI uses the following components:
 
-- W3C Decentralized Identifiers (DIDs),
-- W3C Verifiable Credentials (VCs), and
-- Digital Wallets.
+**Digital Wallets** describe software that enables trading partners and credential issers to acquire, store, and present VCs and to manage DIDs. The Digital Wallet provider needs to expose Application Programming Interfaces (APIs) for VRS providers to integrate the credentialing mechanism into PI verifications. Additionally, Digital Wallets of trading partners need to interact with Credential Issuers’ wallets for credential acquisition. <p>
+To exchange the ATP credential status between requesters and responders, the OCI uses the header of PI Messages defined by [GS1 Lightweight Messaging Standard for Verification of Product Identifiers](https://www.gs1.org/docs/standards/gs1_lightweight_verification_messaging_standard_v_1_0_2.pdf). The presentation of the ATP credential can be embedded as JSON Web Token (JWT) into a custom header of GS1 lightweight messages without changing the VR and VR/R payload bodies’ data structure.
 
-These components are described in more detail in the following sections.
+![vrs architecture with credentials](./assets/VRS-architecture-credentials.png)
 
+# Architecture 
+## System overview
+The diagram below depicts how Digital Wallets are integrated with OCI participants, such as VRS systems and credential issuers. Trading partners have no technical integration effort. All they need to do is to sign up with an OCI-conformant provider and run through the OCI-conformant enterprise identity verification process. 
 
-# System Overview
+![OCI architecture with credentials](./assets/OCI-architecture.png)
 
-The OCI architecture integrates the three **new components** (DID, VC, and Digital Wallet) with components of the existing PI verification infrastructure.
+## Credential acquisition
+In the OCI architecture, trading partners can manage their credentials themselves. While gathering information about a company’s ATP status is relatively simple, ensuring that an ATP credential is being granted to the right entity, and not an imposter, is more challenging. By performing thorough and auditable due diligence, a Credential Issuer promotes confidence in a Trading Partner’s digital identity prior to the issuance of an ATP credential. The Identity Credential becomes the Root of Trust upon which an ATP credential can be issued.
 
-Integration of these components requires the implementation of the following artefacts:
+![OCI ATP issuance process](./assets/OCI-ATP-issuance-swimlanes.png)
 
-- Digital Wallets  
-- Distributed ledger as trust fabric for anchoring DIDs
-- GS1 Lightweight Messaging standard
+### Enterprise Identity Verification
+Prior to credential issuance, a trading partner’s enterprise identifier (DID) needs to be verified through an identity verification process. Enterprise identity verification is completed by the Credential Issuer according to [OCI-defined conformance criteria for Credential Issuers](https://open-credentialing-initiative.github.io/Credential-Issuer-Conformance-Criteria/). Upon successful verification, the Credential Issuer will release an identity credential that is used as the Root of Trust within the ecosystem. In addition, the Credential Issuer will perform due diligence on the license status of the trading partner and issue an ATP credential if appropriate. <p>
+For management of credentials, the digital wallet provider shall provide to the trading partner a web user interface (application layer).
+## Credentialized PI verification flow
+The OCI-conformant digital wallet providers need to furnish the VRS providers with APIs to:
+1. **Generate** a Verifiable Presentation of a DSCSA ATP Credential in form of a JWT
+2. **Verify** a Verifiable Presentation of a DSCSA ATP Credential
 
-The Digital Wallets is software that enables trading partners and credential issers to acquire, store, and present verifiable credentials and to mange their digital identity (DID). The Digital Wallet provider needs to expose APIs, so that VRS providers can integrate to use the ATP credentials in PI verifications. The OCI ensures that  there is no technical integration for Trading Partners required.
+The diagrams below depict how digital wallets for credential management are integrated into the existing PI verification systems utilized by VRS providers. 
 
-For acquiring credentials, wallets of trading partners need to interact with wallets of credential issuers. 
+![PI verification flow](./assets/PI-verification-flow.png)
 
-To exchange the ATP credential status between requesters and responders, the OCI uses the GS1 lightweight messages protocol without any change to this standard. The presentation of the ATP credential can be embedded as JSON Web Token into a custom header of the GS1 lightweight messages without changing the VR and VR/R payload bodies’ data structure.
+### Generating a Verifiable Presentation of the DSCSA ATP Credential in form of a JWT
+GS1 provides a standardized Lightweight Verification Message format that can be easily implemented by all VRS providers. The required verifiable credential presentation can be added in the form of a JWT to the message header, leaving the message body unchanged.<p>
+The VRS calls the Wallet APIs by providing the CorrUUID, DID and the required credential type. The response is a JWT including the Verifiable Presentation of the DSCSA ATP Credential. The JWT is attached to the VR message header. The VRS can do this for any of their customers using a digital wallet holding credentials.<p>
+The PI request process is depicted in the figure below:
 
-![vrs architecture overview](./assets/vrs-architecture.png)
+![Generating a Verifiable Presentation](./assets/VP-generation-swimlanes.png)
 
-# Architecture Overview
+For recurring requests to create a verifiable presentation, the DID resolution and the revocation check of the ATP credential can be cached in memory so that the API latency will be reduced to just the time required to sign a verifiable credential and associated hash. <p>
+The VRS then routes the Verification Request (or Response) to the other VRS where the credentials are verified. If the credentials are correct, the message will be accepted. Otherwise, an error will be created, and the request or response will not be accepted. The VRS uses the API to verify a received verifiable presentation.
+### Verification of Verifiable Presentations of DSCSA ATP Credentials
+The verification flow starts with the VRS sending the JWT to the Digital Wallet of the trading partner receiving either a PI request or response message:
 
-The diagram below describes how enterprise Digital Wallets are integrated with integrators such as VRS systems and credential issuers.
+![Verifying a Verifiable Presentation](./assets/VP-verification-swimlanes.png)
 
-The VRS systems support various integration capabilities, such as content-based routing and mapping of the PI verification requests, and several connectivity options, providing standardized integration with other VRS providers. VRS systems are cloud-based multi-tenant solutions. 
-
-Following the minimally invasive adoption principle, the Digital Wallets will be integrated via APIs to the VRS provider system so that ATP credentials can be attached to the GS1 lightweight verification protocol in the form of a JSON Web Token (JWT). For the management of ATP credentials, a web UI can be provided on the application layer. Consequently, there will be minimal customization requirements and changes to trading partner´s existing infrastructures.
-
-Additional API integration will be implemented between the enterprise wallets and the Credential Issuers’ wallets for ATP credentials acquisition.
-
-
-![vrs architecture overview](./assets/trading-partner-architecture.png)
+The charts above depict the verification process. According to DSCSA, both requesters and responders must also check the ATP status of the trading partner sending the PI verification request or response. 
+## OCI system architecture overview
+![OCI system architecture overview](./assets/OCI-architecture-trading-partners.png)
 
 # Helpful Links
 
