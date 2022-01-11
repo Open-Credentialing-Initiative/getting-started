@@ -27,7 +27,7 @@ When a saleable return arrives at the warehouse of a wholesaler, the 2D DataMatr
 
 The Look-up Table and Routing Service Network store and maintain look-up data for mapping any sGTIN to the service endpoint of the relevant MANs.
 
-![vrs architecture overview](./assets/VRS-architecture.png)
+![vrs architecture overview](./assets/VRS-architecture.jpg)
 
 ## Challenges of the current VRS architecture 
 In the current system the Global Location Number (GLN) is used to identify trading partners. However, it is not unheard of that a used GLN is either not or incorrectly registered for a trading entity. Additionally, there is no verifiable proof that the provided GLN actually stems from the requesting or responding trading partner.
@@ -47,7 +47,7 @@ The OCI uses W3C (World Wide Web Consortium) [Decentralized Identifier](https://
 
 To exchange the ATP credential status between requesters and responders, the OCI uses the header of PI Messages defined by [GS1 Lightweight Messaging Standard for Verification of Product Identifiers](https://www.gs1.org/docs/standards/gs1_lightweight_verification_messaging_standard_v_1_0_2.pdf). The presentation of the ATP credential can be embedded as JSON Web Token (JWT) into a custom header of GS1 lightweight messages without changing the VR and VR/R payload bodies’ data structure.
 
-![vrs architecture with credentials](./assets/VRS-architecture-credentials.png)
+![vrs architecture with credentials](./assets/VRS-architecture-credentials.jpg)
 
 # Architecture 
 ## System overview
