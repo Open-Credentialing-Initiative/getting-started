@@ -106,3 +106,10 @@ The charts above depict the verification process. According to DSCSA, both reque
   - [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
   - [Verifiable Presentation](https://www.w3.org/TR/vc-data-model/)
 - [GS1 Lightweight Messaging Standard for Verification of Product Identifiers](https://www.gs1.org/sites/default/files/docs/standards/gs1_lightweight_verification_messaging_standard_v1-1.pdf)
+
+
+---
+## ⚠️ Disclaimer
+THIS REPOSITORY IS PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+
+[Please read the full Disclaimer.](https://github.com/Open-Credentialing-Initiative/spec-template/blob/main/OCI-Repository-Disclaimer.md)
