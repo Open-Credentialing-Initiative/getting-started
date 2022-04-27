@@ -86,7 +86,7 @@ For recurring requests to create a verifiable presentation, the DID resolution a
 
 The VRS then routes the Verification Request (or Response) to the other VRS where the credentials are verified. If the credentials are correct, the message will be accepted. Otherwise, an error will be created, and the request or response will not be accepted. The VRS uses the API to verify a received verifiable presentation.
 ### Verification of Verifiable Presentations of DSCSA ATP Credentials
-The verification flow starts with the VRS sending the JWT to the Digital Wallet of the trading partner receiving either a PI request or response message:
+The verification flow starts with the VRS sending the JWT and the verifier DID to the Digital Wallet of the trading partner receiving either a PI request or response message:
 
 ![Verifying a Verifiable Presentation](./assets/VP-verification-swimlanes.png)
 
