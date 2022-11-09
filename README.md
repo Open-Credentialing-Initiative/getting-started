@@ -27,7 +27,7 @@ A **Digital Wallet Provider** provides Digital Wallets and connected services to
 
 A **Verification Router Service** (VRS) provides PI verification routing and PI verification request and response services. The VRS can act on behalf of the holder (when generating a verifiable presentation) or the verifier (when verifying a verifiable presentation).
 
-A **Credential Issuer** is an entity that issues Verifiable Credentials (VC); also known as a Credential Service Provider (CSP). The Credential Issuer is responsible for checking the status of entity registrations and licenses prior to issuing VC to wholesalers and manufacturers.
+A **Credential Issuer** is an entity that issues Verifiable Credentials (VC); also known as a Credential Service Provider (CSP). The Credential Issuer is responsible for checking the status of entity registrations and licenses prior to issuing VC to trading partners.
 
 A **regulatory body** is an entity that establishes a legal requirement for the subject to be registered or licensed (i.e., the FDA and States Board of Pharmacy for DSCSA ATP status, and other enforcement agencies as may be applicable).
 
