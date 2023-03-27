@@ -127,7 +127,7 @@ The charts above depict the verification process. According to DSCSA, both reque
 - OCI Conformance Criteria 
   - [Credential Issuers](https://open-credentialing-initiative.github.io/Credential-Issuer-Conformance-Criteria/) 
   - Digital Wallet provider (will be published soon on oc-i.org)
-- Documentation of Spherity´s reference implementation: learn.spherity.com
+- Documentation of Spherity´s reference implementation: [learn.caro.vc](https://learn.caro.vc)
 - W3C standards: 
   - [Decentralized Identifier](https://www.w3.org/TR/did-core/)
   - [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
