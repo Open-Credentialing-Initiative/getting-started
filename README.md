@@ -124,9 +124,7 @@ The charts above depict the verification process. According to DSCSA, both reque
 # Helpful Links
 
 - OCI Website: oc-i.org
-- OCI Conformance Criteria 
-  - [Credential Issuers](https://open-credentialing-initiative.github.io/Credential-Issuer-Conformance-Criteria/) 
-  - Digital Wallet provider (will be published soon on oc-i.org)
+- [OCI Resources](https://www.oc-i.org/resources) with Interoperability Profile and more 
 - W3C standards: 
   - [Decentralized Identifier](https://www.w3.org/TR/did-core/)
   - [Verifiable Credentials](https://www.w3.org/TR/vc-data-model/)
